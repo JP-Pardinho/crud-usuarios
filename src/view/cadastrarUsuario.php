@@ -1,3 +1,17 @@
+<?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once __DIR__ . '/../database/Database.php';
+
+$conn = (new Database())->getConnection();
+$stmt = $conn->query('SELECT id, nome FROM usuarios ORDER BY nome');
+$usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <?php require_once './../public/header.php'?>
 
 <main>
@@ -12,10 +26,10 @@
                         </h2>
                     </div>
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="./../action/criarUsuario.php" method="post">
                             <div class="mb-3">
                                 <label for="nomeCadastro">Nome</label>
-                                <input type="text" name="nomeCadastro" id="inomeCadastro" class="form-control">
+                                <input type="text" name="nomeCadastro" id="inomeCadastro" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label for="emailCadastro">Email</label>
@@ -27,7 +41,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="senhaCadastro">Senha</label>
-                                <input type="password" name="senhaCadastro" id="isenhaCadastro" class="form-control">
+                                <input type="password" name="senhaCadastro" id="isenhaCadastro" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <input type="submit" name="criarUsuario" class="btn btn-primary" value="Salvar">
