@@ -19,7 +19,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-light bg-dark">
                         <h2>
                             Realize seu cadastro
                             <a href="./login.php" class="btn btn-danger float-end">Voltar</a>
@@ -33,7 +33,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </div>
                             <div class="mb-3">
                                 <label for="emailCadastro">Email</label>
-                                <input type="email" name="emailCadastro" id="iemailCadastro" class="form-control">
+                                <input type="email" name="emailCadastro" id="iemailCadastro" class="form-control" required>
                             </div>
                             <div class="mb-3">
                                 <label for="dataCadastro">Data de Nascimento</label>

@@ -1,3 +1,4 @@
+
 <?php require_once './../public/header.php' ?>
 
 <main>
@@ -5,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header text-light bg-dark">
                         <h2 class="text-center">Login</h2>
                     </div>
                     <div class="card-body">
