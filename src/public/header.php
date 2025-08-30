@@ -1,3 +1,5 @@
+<?php require_once './../service/mostrarErros.php'?>
+
 <!doctype html>
 <html lang="pt-br">
 

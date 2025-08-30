@@ -1,14 +1,12 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 require_once __DIR__ . '/../database/Database.php';
 
 $conn = (new Database())->getConnection();
-$stmt = $conn->query('SELECT id, nome FROM usuarios ORDER BY nome');
-$alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $conn->query('SELECT id, nome, email, dataNascimento FROM usuarios ORDER BY nome');
+$usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -20,16 +18,48 @@ $alunos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header text-light bg-dark">
-                        <h4>Lista de Usuários</h4>
+                        <h4>
+                            Lista de Usuários
+                            <a href="./login.php" class="btn btn-danger float-end">Voltar</a>
+                        </h4>
                     </div>
                     <div class="card-body">
-                        
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th></th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Data de Nascimento</th>
+                                    <th scope="col">Ações</th>
                                 </tr>
                             </thead>
+                            <tbody>
+                                <?php 
+                                foreach ($usuarios as $usuario) {
+                                    echo sprintf(
+                                        <<<'HTML'
+                                        <tr class="text-center">
+                                            <th scope="row">%d</td>
+                                            <td>%s</td>
+                                            <td>%s</td>
+                                            <td>%s</td>
+                                            <td>
+                                                <a href="" class="btn btn-secondary btn-sm">Visualizar</a>
+                                                <a href="" class="btn btn-success btn-sm">Editar</a>
+                                                <a href="./../action/excluirUsuario.php?usuarioId=%d" class="btn btn-danger btn-sm">Excluir</a>
+                                            </td>
+                                        </tr>
+                                        HTML,
+                                        $usuario['id'],
+                                        $usuario['nome'],
+                                        $usuario['email'],
+                                        $usuario['dataNascimento'],
+                                        $usuario['id'],
+                                    );
+                                }
+                                ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
