@@ -10,6 +10,15 @@ if (!empty($_POST)) {
     $email = trim($_POST['emailCadastro']);
     $dataNascimento = $_POST['dataCadastro'] ?? '';
     $senha = trim($_POST['senhaCadastro']);
+    $status = trim($_POST['status']);
+
+    if ($status == 'admin') {
+        $status = 1;
+    } else if ($status == 'editor') {
+        $status = 2;
+    } else {
+        $status = 0 ;
+    }
 
     // Validação simples
     if (empty($nome) || empty($email) || empty($senha) || empty($dataNascimento)) {
@@ -19,7 +28,8 @@ if (!empty($_POST)) {
     try {
         $conn = (new Database())->getConnection();
 
-        $sql = 'INSERT INTO usuarios (nome, email, dataNascimento, senha) VALUES (:nome, :email, :dataNascimento, :senha)'; // fazer isso aqui dar certo !! 
+
+        $sql = 'INSERT INTO usuarios (nome, email, dataNascimento, senha, status) VALUES (:nome, :email, :dataNascimento, :senha, :status)'; // fazer isso aqui dar certo !! 
 
         $stmt = $conn->prepare($sql);
 
@@ -29,7 +39,8 @@ if (!empty($_POST)) {
             ':nome' => $nome,
             ':email' => $email,
             ':dataNascimento' => $dataNascimento,
-            ':senha' => $senhaHash
+            ':senha' => $senhaHash,
+            ':status' => $status
         ]);
 
         header('Location: ./../view/index.php');

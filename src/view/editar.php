@@ -1,11 +1,17 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header('Location: ./login.php');
+    exit;
+}
 
 require_once './../service/mostrarErros.php';
 require_once __DIR__ . '/../database/Database.php';
 
 try {
     if (empty($_GET['usuarioId'])) {
-        throw new \Exception('ID do usuario é obrigatório.');
+        throw new \Exception('ID do usuario é obrigatório para a edição.');
     }
 
     $conn = (new Database())->getConnection();
@@ -29,31 +35,32 @@ try {
                 <div class="card">
                     <div class="card-header text-light bg-dark">
                         <h2>
-                            Usuario
+                            Editar Usuario
+                            <a href="./index.php" class="btn btn-danger float-end">Voltar</a>
                         </h2>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form action="./../action/editarUsuario.php" method="post">
                             <div class="mb-3">
                                 <label for="id">Id</label>
                                 <input type="text" name="id" class="form-control" value="<?= ($usuario['id']) ?>" readonly>
                             </div>
 
                             <div class="mb-3">
-                                <label for="nome">Nome</label>
-                                <input type="text" name="nome" class="form-control" value="<?= ($usuario['nome']); ?>" readonly>
+                                <label for="novoNome">Nome</label>
+                                <input type="text" name="novoNome" class="form-control" value="<?= ($usuario['nome']); ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="novoEmail">Email</label>
-                                <input type="email" name="novoEmail" class="form-control" value="<?= ($usuario['email']); ?>" readonly>
+                                <input type="email" name="novoEmail" class="form-control" value="<?= ($usuario['email']); ?>">
                             </div>
                             <div class="mb-3">
                                 <label for="novaData">Data de Nascimento</label>
-                                <input type="date" name="novaData" class="form-control" value="<?= ($usuario['dataNascimento']) ?>" readonly>
+                                <input type="date" name="novaData" class="form-control" value="<?= ($usuario['dataNascimento']) ?>">
                             </div>
 
                             <div class="mt-3 mb-3">
-                                <a href="./index.php" class="btn btn-primary">Voltar</a>
+                                <input type="submit" name="editarUsuario" class="btn btn-primary" value="Salvar">
                             </div>
                         </form>
                     </div>

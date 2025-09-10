@@ -13,12 +13,12 @@
                         <form action="./../action/validarUsuario.php" method="post">
                             <div class="mb-3">
                                 <label for="emailLogin" class="form-label">Email</label>
-                                <input name="emailLogin" type="email" class="form-control" id="iemailLogin" aria-describedby="emailHelp">
+                                <input name="emailLogin" type="email" class="form-control" id="iemailLogin" aria-describedby="emailHelp" required>
                             </div>
                             <div class="mb-3">
                                 <label for="senhaLogin" class="form-label">Senha</label>
                                 <input name="senhaLogin" type="password" class="form-control" id="isenhaLogin">
-                                <div id="PasswordHelp" class="form-text">
+                                <div id="PasswordHelp" class="form-text" required>
                                     <a href="./cadastrarUsuario.php">Clique aqui caso ainda não possua cadastro.</a>
                                 </div>
                             </div>

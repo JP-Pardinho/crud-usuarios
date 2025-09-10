@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     nome VARCHAR(100) NOT NULL, 
     email VARCHAR(100),
     dataNascimento DATE,
-    senha VARCHAR(100)
+    senha VARCHAR(100),
+    status INT
 );
     
 -- criar a senha criptografada, usa a função password rach

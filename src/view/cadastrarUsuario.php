@@ -10,7 +10,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php require_once './../public/header.php'?>
+<?php require_once './../public/header.php' ?>
 
 <main>
     <div class="container mt-4">
@@ -41,7 +41,28 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                 <label for="senhaCadastro">Senha</label>
                                 <input type="password" name="senhaCadastro" id="isenhaCadastro" class="form-control" required>
                             </div>
-                            <div class="mb-3">
+                            <p class="mt-3">Status do usuários:</p>
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="radioDefault1" value="admin" checked>
+                                <label class="form-check-label" for="radioDefault1">
+                                    Admin
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="radioDefault2" value="editor">
+                                <label class="form-check-label" for="radioDefault2">
+                                    Editor
+                                </label>
+                            </div>
+                             <div class="form-check">
+                                <input class="form-check-input" type="radio" name="status" id="radioDefault3" value="vizitante">
+                                <label class="form-check-label" for="radioDefault3">
+                                    Vizitante
+                                </label>
+                            </div>
+
+                            <div class="mt-3 mb-3">
                                 <input type="submit" name="criarUsuario" class="btn btn-primary" value="Salvar">
                             </div>
                         </form>
@@ -52,4 +73,4 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </main>
 
-<?php require_once './../public/footer.php'?>
+<?php require_once './../public/footer.php' ?>
